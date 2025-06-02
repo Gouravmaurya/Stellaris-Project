@@ -58,7 +58,7 @@ const HeroSection = () => {
             <div className="absolute -top-16 -left-16 w-32 h-32 border border-indigo-500/20 rounded-full animate-spin-slow"></div>
             <div className="absolute -bottom-8 -right-8 w-16 h-16 border border-blue-500/20 rounded-full animate-spin-reverse-slow"></div>
             
-            <h1 className="text-center font-black leading-none tracking-tight text-white">
+            <h1 className="text-center font-black leading-none tracking-tight pt-36 text-white">
               {/* Creative text with animated gradient */}
               <div className="relative text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 overflow-hidden">
                 <span className="inline-block animate-fade-in-up">CREATIVE</span>
