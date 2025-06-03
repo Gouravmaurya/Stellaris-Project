@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [servicesOpen, setServicesOpen] = useState(false);
   
   return (
     <footer className="bg-gradient-to-b from-[#1a1d24] to-[#121418] text-white pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10 px-4 sm:px-6 relative overflow-hidden">
@@ -49,29 +50,39 @@ const Footer = () => {
             </ul>
           </div>
           
-          {/* Services */}
+          {/* Services - Collapsible on mobile */}
           <div className="col-span-1">
-            <h4 className="text-white font-semibold text-lg mb-6 relative inline-block">
-              Our Services
-              <span className="absolute -bottom-2 left-0 w-1/3 h-0.5 bg-blue-500"></span>
-            </h4>
-            <ul className="space-y-3">
-              <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors duration-300 font-medium">All Services</Link></li>
-              <li className="pt-2">
-                <Link to="/services/marketing" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
-                  <span className="mr-2 text-xs">🎯</span> Marketing Services
-                </Link>
-              </li>
-              <li><Link to="/services/brand-strategy" className="text-gray-400 hover:text-white transition-colors duration-300 pl-5">Brand Strategy</Link></li>
-              <li><Link to="/services/digital-marketing" className="text-gray-400 hover:text-white transition-colors duration-300 pl-5">Digital Marketing</Link></li>
-              <li className="pt-2">
-                <Link to="/services/entertainment" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
-                  <span className="mr-2 text-xs">🎭</span> Entertainment Services
-                </Link>
-              </li>
-              <li><Link to="/services/content-production" className="text-gray-400 hover:text-white transition-colors duration-300 pl-5">Content Production</Link></li>
-              <li><Link to="/services/event-production" className="text-gray-400 hover:text-white transition-colors duration-300 pl-5">Event Production</Link></li>
-            </ul>
+            <div 
+              className="flex justify-between items-center cursor-pointer md:cursor-auto"
+              onClick={() => setServicesOpen(!servicesOpen)}
+            >
+              <h4 className="text-white font-semibold text-lg mb-6 relative inline-block">
+                Our Services
+                <span className="absolute -bottom-2 left-0 w-1/3 h-0.5 bg-blue-500"></span>
+              </h4>
+              <span className="md:hidden text-gray-400">
+                {servicesOpen ? '−' : '+'}
+              </span>
+            </div>
+            <div className={`${servicesOpen ? 'block' : 'hidden'} md:block`}>
+              <ul className="space-y-3">
+                <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors duration-300 font-medium">All Services</Link></li>
+                <li className="pt-2">
+                  <Link to="/services/marketing" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
+                    <span className="mr-2 text-xs">🎯</span> Marketing Services
+                  </Link>
+                </li>
+                <li className="hidden md:block"><Link to="/services/brand-strategy" className="text-gray-400 hover:text-white transition-colors duration-300 pl-5">Brand Strategy</Link></li>
+                <li className="hidden md:block"><Link to="/services/digital-marketing" className="text-gray-400 hover:text-white transition-colors duration-300 pl-5">Digital Marketing</Link></li>
+                <li className="pt-2">
+                  <Link to="/services/entertainment" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
+                    <span className="mr-2 text-xs">🎭</span> Entertainment Services
+                  </Link>
+                </li>
+                <li className="hidden md:block"><Link to="/services/content-production" className="text-gray-400 hover:text-white transition-colors duration-300 pl-5">Content Production</Link></li>
+                <li className="hidden md:block"><Link to="/services/event-production" className="text-gray-400 hover:text-white transition-colors duration-300 pl-5">Event Production</Link></li>
+              </ul>
+            </div>
           </div>
           
           {/* Contact */}
@@ -107,13 +118,13 @@ const Footer = () => {
         {/* Bottom section */}
         <div className="border-t border-white/10 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0 text-center md:text-left">
-            <p className="text-gray-500">&copy; {currentYear} Stellaris. All rights reserved.</p>
+            <p className="text-gray-500 text-sm sm:text-base">&copy; {currentYear} Stellaris. All rights reserved.</p>
           </div>
-          <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
-            <Link to="/privacy" className="text-gray-500 hover:text-white text-sm transition-colors duration-300">Privacy Policy</Link>
-            <Link to="/terms" className="text-gray-500 hover:text-white text-sm transition-colors duration-300">Terms of Service</Link>
-            <Link to="/cookies" className="text-gray-500 hover:text-white text-sm transition-colors duration-300">Cookie Policy</Link>
-            <Link to="/sitemap" className="text-gray-500 hover:text-white text-sm transition-colors duration-300">Sitemap</Link>
+          <div className="flex flex-wrap justify-center md:justify-end gap-x-4 sm:gap-x-6 gap-y-2">
+            <Link to="/privacy" className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors duration-300">Privacy</Link>
+            <Link to="/terms" className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors duration-300">Terms</Link>
+            <Link to="/cookies" className="hidden sm:inline-block text-gray-500 hover:text-white text-sm transition-colors duration-300">Cookies</Link>
+            <Link to="/sitemap" className="hidden sm:inline-block text-gray-500 hover:text-white text-sm transition-colors duration-300">Sitemap</Link>
           </div>
         </div>
       </div>
