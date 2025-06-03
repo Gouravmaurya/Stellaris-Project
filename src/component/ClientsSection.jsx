@@ -123,18 +123,20 @@ const ClientsSection = () => {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 mb-12 sm:mb-16 md:mb-20"
         >
-          {clients.map((client, index) => (
+          {clients.map((client, idx) => (
             <motion.div
               key={client.id}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
               variants={fadeIn}
-              custom={index * 0.1}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              transition={{ duration: 0.6, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
-              <ClientCard 
+              <ClientCard
                 icon={client.icon}
                 name={client.name}
                 bgColor={client.bgColor}
+                label={client.label}
               />
             </motion.div>
           ))}

@@ -112,19 +112,19 @@ const ServicesSection = () => {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
         >
-          {services.map((service, index) => (
+          {services.map((service, idx) => (
             <motion.div
               key={service.id}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
               variants={fadeIn}
-              custom={index * 0.1}
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              transition={{ duration: 0.6, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
               <ServiceCard 
                 icon={service.icon}
                 title={service.title}
                 description={service.description}
-                index={`0${index + 1}`}
               />
             </motion.div>
           ))}
